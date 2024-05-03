@@ -16,8 +16,23 @@ public class AddressController {
     @Autowired
     AddressService service;
 
-    @PostMapping(path = "/address")
+    @GetMapping()
+    public ResponseEntity<List<Address>> findAll(@RequestParam String id){
+        return ResponseEntity.ok().body(service.findAll(id));
+    }
+
+    @GetMapping(path = "/find")
+    public ResponseEntity<Address> findByName(@RequestParam String addressName, @RequestParam String id){
+        return ResponseEntity.ok().body(service.findByName(addressName, id));
+    }
+
+    @PostMapping(path = "/save")
     public ResponseEntity<List<Address>> saveAddress(@RequestBody Address address, @RequestParam String id) {
-        return ResponseEntity.ok().body(service.addAddress(address, id));
+        return ResponseEntity.ok().body(service.save(address, id));
+    }
+
+    @PutMapping(path = "/update")
+    public ResponseEntity<Address> updateAddress(@RequestBody Address address, @RequestParam String addressName,@RequestParam String id) {
+        return ResponseEntity.ok().body(service.update(address, addressName, id));
     }
 }
