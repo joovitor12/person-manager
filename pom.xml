@@ -53,6 +53,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>person-manager-docker</finalName>
 	</build>
 
 </project>

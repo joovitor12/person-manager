@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+      database: person-manager
+      host: person-manager-container
+      port: 27018
