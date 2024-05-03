@@ -29,6 +29,8 @@ public class PersonService {
         logger.info("Creating one person!");
 
         PersonUtils.validateDate(person);
+        PersonUtils.validateCep(person.getCep());
+        PersonUtils.validatePhoneNumber(person.getPhoneNumber());
 
         return repository.save(person);
     }
