@@ -3,10 +3,8 @@ package com.person_manager.utils.address;
 import com.person_manager.entities.Address;
 import com.person_manager.entities.Person;
 import com.person_manager.exceptions.BadRequestException;
-import com.person_manager.repositories.PersonRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 public class AddressUtils {
 
