@@ -1,4 +1,4 @@
-package com.person_manager.utils;
+package com.person_manager.utils.person;
 
 import com.person_manager.entities.Person;
 import com.person_manager.exceptions.BadRequestException;
@@ -7,7 +7,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Utils {
+public class PersonUtils {
 
     public static void validateDate(Person person){
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");

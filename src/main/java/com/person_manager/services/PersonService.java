@@ -4,7 +4,8 @@ import com.person_manager.entities.Address;
 import com.person_manager.entities.Person;
 import com.person_manager.exceptions.ResourceNotFoundException;
 import com.person_manager.repositories.PersonRepository;
-import com.person_manager.utils.Utils;
+import com.person_manager.utils.address.AddressUtils;
+import com.person_manager.utils.person.PersonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class PersonService {
 
         logger.info("Creating one person!");
 
-        Utils.validateDate(person);
+        PersonUtils.validateDate(person);
 
         return repository.save(person);
     }
@@ -60,29 +61,9 @@ public class PersonService {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
+        AddressUtils.reorganizeAddressList(entity, address);
+
         List<Address> addressList = entity.getAddressList();
-
-        boolean newAddressIsPrincipal = address.isPrincipal();
-
-        addressList.add(0, address);
-
-        if (newAddressIsPrincipal) {
-            for (Address a : addressList) {
-                if (!a.equals(address)) {
-                    a.setPrincipal(false);
-                }
-            }
-        }
-
-        Optional<Address> principalAddressOptional = addressList.stream()
-                .filter(Address::isPrincipal)
-                .findFirst();
-
-        principalAddressOptional.ifPresent(principalAddress -> {
-            addressList.remove(principalAddress);
-            addressList.add(0, principalAddress);
-        });
-
         entity.setAddressList(addressList);
         repository.save(entity);
 
