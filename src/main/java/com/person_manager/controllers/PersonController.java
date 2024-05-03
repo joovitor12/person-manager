@@ -27,4 +27,9 @@ public class PersonController {
     public ResponseEntity<Person> save(@RequestBody Person person){
         return ResponseEntity.ok().body(service.create(person));
     }
+
+    @GetMapping(path = "/find")
+    public ResponseEntity<Person> findById(@RequestParam String id){
+        return ResponseEntity.ok().body(service.findById(id));
+    }
 }
