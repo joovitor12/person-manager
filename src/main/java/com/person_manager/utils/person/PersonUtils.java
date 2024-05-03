@@ -19,4 +19,14 @@ public class PersonUtils {
             throw new BadRequestException("Invalid birth date format. Please provide the date in the format dd/MM/yyyy.");
         }
     }
+
+    public static void setProperties(Person update, Person requestBodyPerson){
+        update.setFullName(requestBodyPerson.getFullName());
+        update.setBirthDate(requestBodyPerson.getBirthDate());
+        update.setPublicPlace(requestBodyPerson.getPublicPlace());
+        update.setCep(requestBodyPerson.getCep());
+        update.setPhoneNumber(requestBodyPerson.getPhoneNumber());
+        update.setCity(requestBodyPerson.getCity());
+        update.setState(requestBodyPerson.getState());
+    }
 }

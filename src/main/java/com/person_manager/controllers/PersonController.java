@@ -32,4 +32,9 @@ public class PersonController {
     public ResponseEntity<Person> findById(@RequestParam String id){
         return ResponseEntity.ok().body(service.findById(id));
     }
+
+    @PutMapping(path = "/update")
+    public ResponseEntity<Person> update(@RequestBody Person person, @RequestParam String id){
+        return ResponseEntity.ok().body(service.update(person, id));
+    }
 }

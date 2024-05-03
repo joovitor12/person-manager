@@ -1,10 +1,8 @@
 package com.person_manager.services;
 
-import com.person_manager.entities.Address;
 import com.person_manager.entities.Person;
 import com.person_manager.exceptions.ResourceNotFoundException;
 import com.person_manager.repositories.PersonRepository;
-import com.person_manager.utils.address.AddressUtils;
 import com.person_manager.utils.person.PersonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,13 +33,13 @@ public class PersonService {
         return repository.save(person);
     }
 
-    public Person update(Person person){
+    public Person update(Person person, String id){
         logger.info("Updating one person!");
 
-        var entity = repository.findById(person.getId())
+        var entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
 
-        entity.setFullName(person.getFullName());
+        PersonUtils.setProperties(entity, person);
 
         return repository.save(entity);
     }
