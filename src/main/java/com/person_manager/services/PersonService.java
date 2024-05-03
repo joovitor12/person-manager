@@ -1,14 +1,13 @@
 package com.person_manager.services;
 
 import com.person_manager.entities.Person;
+import com.person_manager.exceptions.BadRequestException;
 import com.person_manager.exceptions.ResourceNotFoundException;
 import com.person_manager.repositories.PersonRepository;
+import com.person_manager.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -26,20 +25,11 @@ public class PersonService {
         return repository.findAll();
     }
 
-    public Person create(Person person){
+    public Person create(Person person) throws BadRequestException {
 
         logger.info("Creating one person!");
 
-        // Formatar a data de nascimento para o formato desejado
-        SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        try {
-            Date birthDate = inputFormat.parse(person.getBirthDate());
-            person.setBirthDate(outputFormat.format(birthDate));
-        } catch (ParseException e) {
-            // Tratar erro de formatação da data, se necessário
-            e.printStackTrace();
-        }
+        Utils.validateDate(person);
 
         return repository.save(person);
     }

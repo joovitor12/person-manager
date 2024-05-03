@@ -42,6 +42,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     @ExceptionHandler(BadRequestException.class)
     public final ResponseEntity<ExceptionResponse> handleBadRequest(
             Exception ex, WebRequest request){
+
         ExceptionResponse exceptionResponse = new ExceptionResponse(
                 new Date(),
                 ex.getMessage(),

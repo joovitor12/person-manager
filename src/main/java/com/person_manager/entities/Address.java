@@ -10,6 +10,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class Address {
 
+    private Person personAddress;
     private String addressName;
     private boolean isPrincipal;
 }
