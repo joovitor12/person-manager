@@ -56,18 +56,5 @@ public class PersonService {
         return entity;
     }
 
-    public List<Address> addAddress(Address address, String id) {
-        var entity = repository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID!"));
-
-        AddressUtils.reorganizeAddressList(entity, address);
-
-        List<Address> addressList = entity.getAddressList();
-        entity.setAddressList(addressList);
-        repository.save(entity);
-
-        return addressList;
-    }
-
 
 }
