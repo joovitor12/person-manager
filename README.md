@@ -27,6 +27,12 @@ O Person Manager é uma API de gerenciamento de pessoas com as funcionalidades d
 - Criar, editar e consultar um ou mais endereços de uma pessoa
 - Poder indicar qual endereço será considerado o principal de uma pessoa
 
+  Abaixo está sendo disponibilizado o Diagrama de Classes realizado para o projeto:
+
+  ![UML diagrams](https://github.com/joovitor12/person-manager/assets/77728952/9acb85aa-e227-423a-835b-befb703c809c)
+
+
+
 ## 🚀 Como executar
 
 - Clone o repositório
