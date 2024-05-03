@@ -32,4 +32,9 @@ public class PersonController {
     public ResponseEntity<Person> findById(@RequestParam String id){
         return ResponseEntity.ok().body(service.findById(id));
     }
+
+    @PostMapping(path = "/address")
+    public ResponseEntity<List<Address>> saveAddress(@RequestBody Address address, @RequestParam String id) {
+        return ResponseEntity.ok().body(service.addAddress(address, id));
+    }
 }

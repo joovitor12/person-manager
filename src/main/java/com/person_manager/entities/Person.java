@@ -1,15 +1,15 @@
 package com.person_manager.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-@AllArgsConstructor
+
 @Getter
 @Setter
 @Document(collection = "person")
@@ -27,5 +27,19 @@ public class Person implements Serializable {
     private String phoneNumber;
     private String city;
     private String state;
+
+    public Person(String fullName, String birthDate,
+                  String publicPlace, String cep, String phoneNumber,
+                  String city, String state) {
+        this.fullName = fullName;
+        this.birthDate = birthDate;
+        this.addressList = new ArrayList<>();
+        this.publicPlace = publicPlace;
+        this.cep = cep;
+        this.phoneNumber = phoneNumber;
+        this.city = city;
+        this.state = state;
+    }
+
 
 }

@@ -9,14 +9,14 @@ import java.util.Date;
 
 public class Utils {
 
-    public static void validateDate(Person person) {
+    public static void validateDate(Person person){
         SimpleDateFormat inputFormat = new SimpleDateFormat("dd/MM/yyyy");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("dd/MM/yyyy");
+        inputFormat.setLenient(false);
+
         try {
             Date birthDate = inputFormat.parse(person.getBirthDate());
-            person.setBirthDate(outputFormat.format(birthDate));
         } catch (ParseException e) {
-            throw new BadRequestException("Invalid date format. Please provide the date in the format dd/MM/yyyy.");
+            throw new BadRequestException("Invalid birth date format. Please provide the date in the format dd/MM/yyyy.");
         }
     }
 }
